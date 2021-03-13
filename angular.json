@@ -33,7 +33,11 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "chart.js",
+              "chartjs-plugin-datalabels"
+            ]
           },
           "configurations": {
             "production": {
@@ -127,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "family-budget-angular"
+  "defaultProject": "family-budget-angular",
+  "cli": {
+    "analytics": "45c0a833-7892-4162-bbd9-f53b375b0856"
+  }
 }

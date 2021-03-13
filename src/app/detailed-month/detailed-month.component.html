@@ -1,0 +1,40 @@
+<!-- <p>detailed-month works!</p>
+{{ months[month] }} balance: {{ balance | currency }} -->
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">{{ months[month] }}</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="dropdown">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMonthButton" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="far fa-calendar-alt"></i>
+        Select month
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMonthButton">
+        <li *ngFor="let month of months; index as i">
+          <a class="dropdown-item" (click)="selectMonth(i)">{{ month }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="text-primary">
+  Income: {{ income | currency }}
+</div>
+<div class="text-danger">
+  Expense: -{{ expense | currency }}
+</div>
+<div class="text-dark">
+  Balance: {{ balance | currency }}
+</div>
+
+<div style="display: block; height: 400px;">
+  <canvas baseChart
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+  </canvas>
+</div>

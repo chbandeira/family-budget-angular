@@ -1,0 +1,69 @@
+<div class="modal fade" id="incomeModal" tabindex="-1" aria-labelledby="incomeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="incomeModalLabel">New Income</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="incomeForm" novalidate>
+          <div class="mb-3 row">
+            <label for="incomeDescription" class="col-form-label">Description</label>
+            <div class="col">
+              <input type="text" class="form-control" id="incomeDescription" formControlName="description" placeholder="e.g. Payroll 01-15 Jan 21"
+                [ngClass]="{ 'is-invalid': incomeForm.controls.description.touched && incomeForm.controls.description.invalid }">
+              <div class="invalid-feedback">
+                Description required
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="incomeCategory" class="col-form-label">Category</label>
+            <div class="col">
+              <select id="incomeCategory" class="form-select" formControlName="category"
+                [ngClass]="{ 'is-invalid': incomeForm.controls.category.touched && incomeForm.controls.category.invalid }">
+                <option selected>Choose...</option>
+                <option *ngFor="let item of categories">{{ item }}</option>
+              </select>
+              <div class="invalid-feedback">
+                Category required
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="incomeDate" class="col-form-label">Date</label>
+            <div class="col">
+              <input type="date" class="form-control" id="incomeDate" formControlName="date"
+                [ngClass]="{ 'is-invalid': incomeForm.controls.date.touched && incomeForm.controls.date.invalid }">
+              <div class="invalid-feedback">
+                Date required
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="incomeValue" class="col-form-label">Value</label>
+            <div class="col">
+              <div class="input-group has-validation">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="incomeValue" placeholder="0.00" formControlName="value"
+                 [ngClass]="{ 'is-invalid': incomeForm.controls.value.touched && incomeForm.controls.value.invalid }">
+                <div class="invalid-feedback">
+                  Value required
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button #closeButton type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="incomeForm.invalid" (click)="save()" >
+          <i class="fas fa-save"></i> Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

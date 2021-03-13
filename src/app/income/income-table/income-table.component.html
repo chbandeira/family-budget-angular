@@ -1,0 +1,67 @@
+<div class="table-responsive">
+  <table class="table table-hover table-sm">
+    <thead class="table-light">
+      <tr class="d-flex">
+        <th class="col-2">Date</th>
+        <th class="col-7">Income</th>
+        <th class="col-2">Value</th>
+        <th class="col-1 text-center">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="d-flex" *ngFor="let item of incomes" (dblclick)="editIncome(item)">
+        <td class="col-2">
+          <span *ngIf="!item.edit">
+            {{ item.date | date:'dd/MM/yy':'+000' }}
+          </span>
+          <span *ngIf="item.edit">
+            <input type="date" class="form-control p-0 m-0" [(ngModel)]="item.date" maxlength="10">
+          </span>
+        </td>
+        <td class="col-7">
+          <span *ngIf="!item.edit">
+            {{ item.description }}
+          </span>
+          <span *ngIf="item.edit">
+            <input type="text" class="form-control p-0" [(ngModel)]="item.description" maxlength="50">
+          </span>
+        </td>
+        <td class="col-2">
+          <span *ngIf="!item.edit" class="text-primary">
+            {{ item.value | currency }}
+          </span>
+          <span *ngIf="item.edit">
+            <input type="text" class="form-control p-0" [(ngModel)]="item.value" maxlength="10">
+          </span>
+        </td>
+        <td class="col-1 text-center">
+          <span *ngIf="!item.edit">
+            <a (click)="editIncome(item)" class="pointer link-dark m-1" title="Edit Income">
+              <i class="far fa-edit"></i>
+            </a>
+            <a (click)="itemToDelete(item)" class="pointer link-dark" title="Delete Income" data-bs-toggle="modal" data-bs-target="#incomeModalConfirm">
+              <i class="far fa-trash-alt"></i>
+            </a>
+          </span>
+          <span *ngIf="item.edit">
+            <a (click)="saveIncome(item)" class="pointer link-dark m-2" title="Save Income">
+              <i class="far fa-save"></i>
+            </a>
+            <a (click)="cancelIncomeChanges(item)" class="pointer link-dark" title="Cancel changes">
+              <i class="fas fa-undo-alt"></i>
+            </a>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot class="table-light">
+      <tr class="d-flex text-primary">
+        <th class="col-9" colspan="2">Total Income</th>
+        <th class="col-3" colspan="2">{{ totalIncome | currency }}</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<app-income></app-income>
+<app-modal-confirm [id]="'incomeModalConfirm'" (confirm)="deleteIncome($event)" [message]="'Do you want to delete this Income?'"></app-modal-confirm>

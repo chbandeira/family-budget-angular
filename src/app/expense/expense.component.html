@@ -1,0 +1,76 @@
+<div class="modal fade" id="expenseModal" tabindex="-1" aria-labelledby="expenseModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="expenseModalLabel">New Expense</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="expenseForm" novalidate>
+          <div class="mb-3 row">
+            <label for="expenseDescription" class="col-form-label">Description</label>
+            <div class="col">
+              <input type="text" class="form-control" id="expenseDescription" formControlName="description" placeholder="e.g. Dollarama"
+                [ngClass]="{ 'is-invalid': expenseForm.controls.description.touched && expenseForm.controls.description.invalid }">
+              <div class="invalid-feedback">
+                Description required
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="expenseCategory" class="col-form-label">Category</label>
+            <div class="col">
+              <select id="expenseCategory" class="form-select" formControlName="category"
+                [ngClass]="{ 'is-invalid': expenseForm.controls.category.touched && expenseForm.controls.category.invalid }">
+                <option selected>Choose...</option>
+                <option *ngFor="let item of categories">{{ item }}</option>
+              </select>
+              <div class="invalid-feedback">
+                Category required
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="expenseDate" class="col-form-label">Date</label>
+            <div class="col">
+              <input type="date" class="form-control" id="expenseDate" formControlName="date"
+                [ngClass]="{ 'is-invalid': expenseForm.controls.date.touched && expenseForm.controls.date.invalid }">
+              <div class="invalid-feedback">
+                Date required
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="expenseValue" class="col-form-label">Value</label>
+            <div class="col">
+              <div class="input-group has-validation">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="expenseValue" placeholder="0.00" formControlName="value"
+                [ngClass]="{ 'is-invalid': expenseForm.controls.value.touched && expenseForm.controls.value.invalid }">
+                <div class="invalid-feedback">
+                  Value required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" formControlName="credit" id="creditCard">
+                <label class="form-check-label" for="creditCard">
+                  Paid by Credit Card <i class="fas fa-credit-card"></i>
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button #closeButton type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" [disabled]="expenseForm.invalid" (click)="save()" >
+          <i class="fas fa-save"></i> Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
