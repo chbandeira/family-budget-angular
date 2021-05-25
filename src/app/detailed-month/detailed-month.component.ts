@@ -101,30 +101,34 @@ export class DetailedMonthComponent implements OnInit {
     this.month = month;
     const date = new Date();
     this.expenseService.fetch(date.getFullYear(), month).subscribe(expenses => {
+      // total expenses
+      let totalExpense = 0.0;
+      expenses.data.forEach((values: any) => totalExpense += values.value);
+
       // Basics
       const basics = [CategoryConst.LIST[0], CategoryConst.LIST[1], CategoryConst.LIST[9]];
-      this.setValueBarChartDataItem(0, expenses.data
+      this.setValueBarChartDataItem(0, totalExpense, expenses.data
         .filter((e: Expense) => basics.includes(e.category)));
 
       // Entertainment
-      this.setValueBarChartDataItem(1, expenses.data
+      this.setValueBarChartDataItem(1, totalExpense, expenses.data
         .filter((e: Expense) => CategoryConst.LIST[2] === e.category));
 
       // Grocery
-      this.setValueBarChartDataItem(2, expenses.data
+      this.setValueBarChartDataItem(2, totalExpense, expenses.data
         .filter((e: Expense) => CategoryConst.LIST[3] === e.category));
 
       // Home
       const home = [CategoryConst.LIST[4], CategoryConst.LIST[5], CategoryConst.LIST[7], CategoryConst.LIST[10], CategoryConst.LIST[11]];
-      this.setValueBarChartDataItem(3, expenses.data
+      this.setValueBarChartDataItem(3, totalExpense, expenses.data
         .filter((e: Expense) => home.includes(e.category)));
 
       // Investments
-      this.setValueBarChartDataItem(4, expenses.data
+      this.setValueBarChartDataItem(4, totalExpense, expenses.data
         .filter((e: Expense) => CategoryConst.LIST[6] === e.category));
 
       // Miscellaneous
-      this.setValueBarChartDataItem(5, expenses.data
+      this.setValueBarChartDataItem(5, totalExpense, expenses.data
         .filter((e: Expense) => CategoryConst.LIST[8] === e.category));
 
       // TOTAL
@@ -145,11 +149,13 @@ export class DetailedMonthComponent implements OnInit {
    * @param index Index of the expense
    * @param expenses Array of expenses
    */
-  setValueBarChartDataItem(index: number, expenses: Expense[]) {
+  setValueBarChartDataItem(index: number, totalExpenses: number, expenses: Expense[]) {
     let sum = 0;
     expenses.forEach((e: Expense) => sum += e.value);
+    let percent = sum * 100 / totalExpenses;
+
     this.barChartData[index].data = [sum];
-    this.barChartData[index].label = CategoryConst.GROUP[index];
+    this.barChartData[index].label = `${CategoryConst.GROUP[index]} ${percent.toPrecision(2)}%`;
   }
 
 }
