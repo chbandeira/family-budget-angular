@@ -14,6 +14,7 @@ import { NumberFormatter } from '../../shared/number-formarter';
 export class MainChartComponent implements OnInit {
 
   currentDate!: Date;
+  average = 0.0;
 
   barChartOptions: ChartOptions;
   barChartLabels: Label[];
@@ -70,10 +71,24 @@ export class MainChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.mainChartService.barChartDataExpenseBehavior.subscribe(values => {
-      if (values) this.barChartData[0].data = values;
+      if (values) {
+        let avg = 0;
+        values.forEach((e: number) => avg += e);
+        avg = avg / values.length;
+        this.barChartData[0].data = values;
+        this.barChartData[0].label += ` (average: ${NumberFormatter.format(Number(avg))})`;
+        this.average -= avg;
+      };
     });
     this.mainChartService.barChartDataIncomeBehavior.subscribe(values => {
-      if (values) this.barChartData[1].data = values;
+      if (values) {
+        let avg = 0;
+        values.forEach((e: number) => avg += e);
+        avg = avg / values.length;
+        this.barChartData[1].data = values;
+        this.barChartData[1].label += ` (average: ${NumberFormatter.format(Number(avg))})`;
+        this.average += avg;
+      };
     });
   }
 }
