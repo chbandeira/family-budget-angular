@@ -10,6 +10,7 @@
         <li *ngFor="let month of months; index as i">
           <a class="dropdown-item" [routerLink]="['/detailed-month']" [queryParams]="{month: i+1}">{{ month }}</a>
         </li>
+        <a class="dropdown-item" [routerLink]="['/detailed-month']" [queryParams]="{month: -1}">ANNUAL AVERAGE</a>
       </ul>
     </div>
   </div>

@@ -16,7 +16,10 @@ export class IncomeService {
   /**
    * @param month January starts at 0
    */
-  fetch(year: number, month: number): Observable<any> {
+  fetch(year: number, month?: number): Observable<any> {
+    if (month === undefined || month < 0) {
+      return this.http.get<any>(`${this.url}?year=${year}`);
+    }
     return this.http.get<any>(`${this.url}?year=${year}&month=${(month + 1)}`);
   }
 
@@ -24,11 +27,10 @@ export class IncomeService {
    * @param month January starts at 0
    */
   fetchSum(year: number, month?: number): Observable<any> {
-    let monthString = '';
-    if (month || month === 0) {
-      monthString = `&month=${(month + 1)}`;
+    if (month === undefined || month < 0) {
+      return this.http.get<any>(`${this.url}/sum?year=${year}`);
     }
-    return this.http.get<any>(`${this.url}/sum?year=${year}${monthString}`);
+    return this.http.get<any>(`${this.url}/sum?year=${year}&month=${(month + 1)}`);
   }
 
   /**

@@ -98,6 +98,7 @@ export class DetailedMonthComponent implements OnInit {
    * @param month January = 0 to December = 11
    */
   selectMonth(month: number) {
+    let isAverage = month < 0;
     this.month = month;
     const date = new Date();
     this.expenseService.fetch(date.getFullYear(), month).subscribe(expenses => {
@@ -107,28 +108,28 @@ export class DetailedMonthComponent implements OnInit {
 
       // Basics
       const basics = [CategoryConst.LIST[0], CategoryConst.LIST[1], CategoryConst.LIST[9]];
-      this.setValueBarChartDataItem(0, totalExpense, expenses.data
+      this.setValueBarChartDataItem(0, totalExpense, isAverage, expenses.data
         .filter((e: Expense) => basics.includes(e.category)));
 
       // Entertainment
-      this.setValueBarChartDataItem(1, totalExpense, expenses.data
+      this.setValueBarChartDataItem(1, totalExpense, isAverage, expenses.data
         .filter((e: Expense) => CategoryConst.LIST[2] === e.category));
 
       // Grocery
-      this.setValueBarChartDataItem(2, totalExpense, expenses.data
+      this.setValueBarChartDataItem(2, totalExpense, isAverage, expenses.data
         .filter((e: Expense) => CategoryConst.LIST[3] === e.category));
 
       // Home
       const home = [CategoryConst.LIST[4], CategoryConst.LIST[5], CategoryConst.LIST[7], CategoryConst.LIST[10], CategoryConst.LIST[11]];
-      this.setValueBarChartDataItem(3, totalExpense, expenses.data
+      this.setValueBarChartDataItem(3, totalExpense, isAverage, expenses.data
         .filter((e: Expense) => home.includes(e.category)));
 
       // Investments
-      this.setValueBarChartDataItem(4, totalExpense, expenses.data
+      this.setValueBarChartDataItem(4, totalExpense, isAverage, expenses.data
         .filter((e: Expense) => CategoryConst.LIST[6] === e.category));
 
       // Miscellaneous
-      this.setValueBarChartDataItem(5, totalExpense, expenses.data
+      this.setValueBarChartDataItem(5, totalExpense, isAverage, expenses.data
         .filter((e: Expense) => CategoryConst.LIST[8] === e.category));
 
       // TOTAL
@@ -136,10 +137,13 @@ export class DetailedMonthComponent implements OnInit {
         this.incomeService.fetchSum(date.getFullYear(), month),
         this.expenseService.fetchSum(date.getFullYear(), month)]
       ).subscribe(values => {
-        this.income = values[0].data.length > 0 ? values[0].data[0].total : 0;
-        this.expense = values[1].data.length > 0 ? values[1].data[0].total : 0;
-        const total = this.income - this.expense;
-        this.balance = total;
+        this.income = 0.0;
+        this.expense = 0.0;
+        values[0].data.forEach((i: any) => this.income += i.total);
+        values[1].data.forEach((e: any) => this.expense += e.total);
+        this.income /= values[0].data.length;
+        this.expense /= values[1].data.length;
+        this.balance = this.income - this.expense;
       });
     });
   }
@@ -149,9 +153,14 @@ export class DetailedMonthComponent implements OnInit {
    * @param index Index of the expense
    * @param expenses Array of expenses
    */
-  setValueBarChartDataItem(index: number, totalExpenses: number, expenses: Expense[]) {
+  setValueBarChartDataItem(index: number, totalExpenses: number, isAverage: boolean, expenses: Expense[]) {
     let sum = 0;
     expenses.forEach((e: Expense) => sum += e.value);
+    if (isAverage) {
+      const totalMonths = new Date().getMonth() + 1;
+      sum = sum / totalMonths;
+      totalExpenses = totalExpenses / totalMonths
+    }
     let percent = sum * 100 / totalExpenses;
 
     this.barChartData[index].data = [sum];
