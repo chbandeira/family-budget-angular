@@ -10,7 +10,7 @@
     <div class="dropdown">
       <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMonthButton" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="far fa-calendar-alt"></i>
-        Select month
+        Category details
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMonthButton">
         <li *ngFor="let month of months; index as i">
@@ -41,4 +41,15 @@
     [legend]="barChartLegend"
     [chartType]="barChartType">
   </canvas>
+</div>
+
+<div class="m-3">
+  <ul class="list-group">
+    <li *ngFor="let item of categories" class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto text-secondary">
+        <span class="fw-bold">{{ item?.group }}</span>
+        <span *ngIf="item?.group != item?.categories"> ({{ item?.categories }})</span>
+      </div>
+    </li>
+  </ul>
 </div>

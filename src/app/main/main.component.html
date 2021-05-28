@@ -4,7 +4,7 @@
     <div class="dropdown">
       <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMonthButton" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="far fa-calendar-alt"></i>
-        Select month
+        Category details
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMonthButton">
         <li *ngFor="let month of months; index as i">
@@ -38,10 +38,8 @@
   </nav>
 
   <div>
-    <div class="container-fluid">
       <app-income-table></app-income-table>
       <app-expense-table></app-expense-table>
-    </div>
   </div>
 </div>
 
