@@ -76,7 +76,7 @@ export class MainChartComponent implements OnInit {
         values.forEach((e: number) => avg += e);
         avg = avg / values.length;
         this.barChartData[0].data = values;
-        this.barChartData[0].label += ` (average: ${NumberFormatter.format(Number(avg))})`;
+        this.barChartData[0].label = `Expenses (average: ${NumberFormatter.format(Number(avg))})`;
         this.average -= avg;
       };
     });
@@ -86,7 +86,7 @@ export class MainChartComponent implements OnInit {
         values.forEach((e: number) => avg += e);
         avg = avg / values.length;
         this.barChartData[1].data = values;
-        this.barChartData[1].label += ` (average: ${NumberFormatter.format(Number(avg))})`;
+        this.barChartData[1].label = `Income (average: ${NumberFormatter.format(Number(avg))})`;
         this.average += avg;
       };
     });
