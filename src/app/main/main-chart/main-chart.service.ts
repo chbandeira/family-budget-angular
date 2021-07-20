@@ -21,14 +21,16 @@ export class MainChartService {
 
   update(date: Date) {
     this.expenseService.fetchSum(date.getFullYear()).subscribe((docs) => {
+      // sort by month
       docs.data.sort((a: any, b: any) => a._id - b._id);
       const values = docs.data.map((doc: any) => parseInt(doc.total));
-      this.barChartDataExpenseBehavior.next(values);
+      this.barChartDataExpenseBehavior.next({values: values, date: date});
     });
     this.incomeService.fetchSum(date.getFullYear()).subscribe((docs) => {
+      // sort by month
       docs.data.sort((a: any, b: any) => a._id - b._id);
       const values = docs.data.map((doc: any) => parseInt(doc.total));
-      this.barChartDataIncomeBehavior.next(values);
+      this.barChartDataIncomeBehavior.next({values: values, date: date});
     });
   }
 }

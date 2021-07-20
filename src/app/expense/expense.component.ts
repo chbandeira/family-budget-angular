@@ -46,7 +46,7 @@ export class ExpenseComponent implements OnInit {
     if (this.expenseForm.valid) {
       this.expenseService.save(this.expenseForm.value).pipe(
         finalize(() => {
-          this.mainService.update(new Date());
+          this.mainService.update(new Date(`${this.expenseForm.value.date}T12:00:00.000Z`));
           this.closeButton.nativeElement.click();
         })
       ).subscribe(res =>

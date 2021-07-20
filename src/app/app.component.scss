@@ -115,3 +115,55 @@ i {
   width: 20px;
   text-align: center;
 }
+
+/*
+ * Cards
+ */
+
+:host ::ng-deep .card {
+  border: 1px solid #f3f3f3;
+}
+
+/*
+ * Text colors
+ */
+
+:host ::ng-deep .text-teal {
+  color: #20c997;
+}
+
+:host ::ng-deep .text-expense {
+  color: rgb(254, 129, 156);
+}
+
+:host ::ng-deep .text-income {
+  color: rgb(93, 180, 238);
+}
+
+:host ::ng-deep .text-purple {
+  color: #6f42c1;
+}
+
+:host ::ng-deep .text-gray-200 {
+  color: #e9ecef;
+}
+
+/*
+ * Border
+ */
+
+:host ::ng-deep .border-left-teal {
+  border-left: 4px solid #20c997;
+}
+
+:host ::ng-deep .border-left-expense {
+  border-left: 4px solid rgb(254, 129, 156);
+}
+
+:host ::ng-deep .border-left-income {
+  border-left: 4px solid rgb(93, 180, 238);
+}
+
+:host ::ng-deep .border-left-purple {
+  border-left: 4px solid #6f42c1;
+}

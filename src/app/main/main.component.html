@@ -1,45 +1,55 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
   <h1 class="h2">Annual Chart</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="dropdown">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMonthButton" data-bs-toggle="dropdown" aria-expanded="false">
+      <button class="btn btn-outline-success dropdown-toggle" type="button" id="detailsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="far fa-calendar-alt"></i>
-        Category details
+        Details
       </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMonthButton">
+      <ul class="dropdown-menu" aria-labelledby="detailsDropdown">
         <li *ngFor="let month of months; index as i">
           <a class="dropdown-item" [routerLink]="['/detailed-month']" [queryParams]="{month: i+1}">{{ month }}</a>
         </li>
-        <a class="dropdown-item" [routerLink]="['/detailed-month']" [queryParams]="{month: -1}">ANNUAL AVERAGE</a>
+        <a class="dropdown-item" [routerLink]="['/detailed-month']" [queryParams]="{month: -1}">ANNUAL</a>
       </ul>
     </div>
   </div>
 </div>
 
-<div>
-  <app-main-chart></app-main-chart>
+<app-monthly-balance></app-monthly-balance>
+
+<div class="card">
+  <div class="card-body shadow rounded">
+    <app-main-chart></app-main-chart>
+  </div>
 </div>
 
 <div class="mt-5">
-  <nav aria-label="Main page navigation">
-    <ul class="pagination justify-content-center">
-      <li class="page-item">
-        <button class="page-link" (click)="previous()">Previous</button>
-      </li>
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-          <strong>{{ currentDate | date:'MMMM y' }}</strong>
-        </a>
-      </li>
-      <li class="page-item">
-        <button class="page-link" (click)="next()">Next</button>
-      </li>
-    </ul>
-  </nav>
 
-  <div>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <h1 class="h4">{{ currentDate | date:'MMMM y' }}</h1>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group me-2" role="group" aria-label="First group">
+        <button type="button" class="btn btn-outline-success" (click)="previous()" title="Previous month">
+          <i class="fa-solid fa-caret-left"></i>
+        </button>
+        <button type="button" class="btn btn-outline-success" (click)="next()" title="Next month">
+          <i class="fa-solid fa-caret-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body shadow rounded">
       <app-income-table></app-income-table>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body shadow rounded">
       <app-expense-table></app-expense-table>
+    </div>
   </div>
 </div>
 

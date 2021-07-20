@@ -72,8 +72,11 @@ export class IncomeTableComponent implements OnInit {
    * @param item Income to be saved
    */
   saveIncome(item: any) {
-    this.incomeService.save(item).subscribe();
-    item.edit = !item.edit;
+    this.incomeService.save(item).pipe(
+      finalize(() => {
+        this.mainService.update(new Date(`${item.date}T12:00:00.000Z`));
+      })
+    ).subscribe(() => item.edit = !item.edit);
   }
 
   /**
@@ -82,7 +85,7 @@ export class IncomeTableComponent implements OnInit {
   deleteIncome(event: any) {
     this.incomeService.delete(this.item._id).pipe(
       finalize(() => {
-        this.mainService.update(this.currentDate);
+        this.mainService.update(new Date(`${this.item.date}T12:00:00.000Z`));
       })
     ).subscribe(() => this.item.edit = !this.item.edit);
   }

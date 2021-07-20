@@ -14,7 +14,6 @@ import { NumberFormatter } from '../../shared/number-formarter';
 export class MainChartComponent implements OnInit {
 
   currentDate!: Date;
-  average = 0.0;
 
   barChartOptions: ChartOptions;
   barChartLabels: Label[];
@@ -70,24 +69,22 @@ export class MainChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mainChartService.barChartDataExpenseBehavior.subscribe(values => {
-      if (values) {
+    this.mainChartService.barChartDataExpenseBehavior.subscribe(obj => {
+      if (obj && obj.values) {
+        this.currentDate = obj.date;
         let avg = 0;
-        values.forEach((e: number) => avg += e);
-        avg = avg / values.length;
-        this.barChartData[0].data = values;
-        this.barChartData[0].label = `Expenses (average: ${NumberFormatter.format(Number(avg))})`;
-        this.average -= avg;
+        obj.values.forEach((e: number) => avg += e);
+        avg = avg / obj.values.length;
+        this.barChartData[0].data = obj.values;
       };
     });
-    this.mainChartService.barChartDataIncomeBehavior.subscribe(values => {
-      if (values) {
+    this.mainChartService.barChartDataIncomeBehavior.subscribe(obj => {
+      if (obj && obj.values) {
+        this.currentDate = obj.date;
         let avg = 0;
-        values.forEach((e: number) => avg += e);
-        avg = avg / values.length;
-        this.barChartData[1].data = values;
-        this.barChartData[1].label = `Income (average: ${NumberFormatter.format(Number(avg))})`;
-        this.average += avg;
+        obj.values.forEach((e: number) => avg += e);
+        avg = avg / obj.values.length;
+        this.barChartData[1].data = obj.values;
       };
     });
   }

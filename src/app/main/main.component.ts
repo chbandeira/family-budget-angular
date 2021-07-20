@@ -14,6 +14,7 @@ export class MainComponent implements OnInit {
 
   currentDate!: Date;
   months = MonthConst.MONTHS;
+  monthlyBalance = 0.0;
 
   constructor(
     private mainChartService: MainChartService,
@@ -25,6 +26,16 @@ export class MainComponent implements OnInit {
     this.currentDate = new Date();
     this.monthlyBalanceService.update(this.currentDate);
     this.mainChartService.update(this.currentDate);
+    this.mainChartService.barChartDataExpenseBehavior.subscribe(obj => {
+      if (obj && obj.date) {
+        this.currentDate = obj.date;
+      };
+    });
+    this.mainChartService.barChartDataIncomeBehavior.subscribe(obj => {
+      if (obj && obj.date) {
+        this.currentDate = obj.date;
+      };
+    });
   }
 
   /**

@@ -1,1 +1,54 @@
-<span class="m-3 text-light">Current monthly balance: {{ value | currency }}</span>
+<div class="row">
+  <div class="col mb-4">
+    <div class="card border-left-teal">
+      <div class="card-body shadow rounded">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+          <div>
+            <div class="text-teal">Monthly balance</div>
+            <div class="fw-bold">{{ monthlyBalance | currency }}</div>
+          </div>
+          <i class="fa-solid fa-3x fa-circle-dollar-to-slot text-gray-200"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card border-left-purple">
+      <div class="card-body shadow rounded">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+          <div>
+            <div class="text-purple">Annual balance</div>
+            <div class="fw-bold">{{ annualBalance | currency }}</div>
+          </div>
+          <i class="fa-solid fa-3x fa-scale-balanced text-gray-200"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card border-left-expense">
+      <div class="card-body shadow rounded">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+          <div>
+            <div class="text-expense">Expenses average</div>
+            <div class="fw-bold">{{ expensesAverage | currency }}</div>
+          </div>
+          <i class="fa-solid fa-3x fa-money-bill-1 text-gray-200"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card border-left-income">
+      <div class="card-body shadow rounded">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+          <div>
+            <div class="text-income">Income average</div>
+            <div class="fw-bold">{{ incomeAverage | currency }}</div>
+          </div>
+          <i class="fa-solid fa-3x fa-money-check-dollar text-gray-200"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

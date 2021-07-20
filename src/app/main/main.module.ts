@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { MainChartComponent } from './main-chart/main-chart.component';
+import { MonthlyBalanceModule } from '../monthly-balance/monthly-balance.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MainChartComponent } from './main-chart/main-chart.component';
     ChartsModule,
     DetailedMonthModule,
     IncomeModule,
-    ExpenseModule
+    ExpenseModule,
+    MonthlyBalanceModule
   ],
   exports: [
     MainComponent,

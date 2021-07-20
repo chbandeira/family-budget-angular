@@ -1,10 +1,8 @@
-import { MonthlyBalanceService } from './../monthly-balance/monthly-balance.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Income } from './income-model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IncomeService } from './income.service';
 import { finalize } from 'rxjs/operators';
-import { IncomeTableService } from './income-table/income-table.service';
 import { MainService } from '../main/main.service';
 
 @Component({
@@ -49,7 +47,7 @@ export class IncomeComponent implements OnInit {
     if (this.incomeForm.valid) {
       this.incomeService.save(this.incomeForm.value).pipe(
         finalize(() => {
-          this.mainService.update(new Date());
+          this.mainService.update(new Date(`${this.incomeForm.value.date}T12:00:00.000Z`));
           this.closeButton.nativeElement.click();
         })
       ).subscribe(res =>

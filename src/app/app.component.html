@@ -6,28 +6,26 @@
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="w-100">
-    <app-monthly-balance></app-monthly-balance>
-  </div>
+  <div class="w-100"></div>
   <br/>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
       <!-- <button type="button" class="btn btn-success">
         Sign out
       </button> -->
-      <span class="text-light">1.0.0-alpha1</span>
+      <span class="text-light m-2">1.0.0-alpha1</span>
     </li>
   </ul>
 </header>
 
-<div class="container-fluid">
+<div class="container-fluid bg-light">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
-              <i class="fas fa-chart-bar"></i>
+              <i class="fa-solid fa-chart-bar"></i>
               Dashboard
             </a>
           </li>
@@ -36,13 +34,13 @@
           </h6>
           <li class="nav-item">
             <a class="nav-link" routerLink="" data-bs-toggle="modal" data-bs-target="#incomeModal">
-              <i class="fas fa-money-check-alt"></i>
+              <i class="fa-solid fa-money-check-dollar"></i>
               New Income
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="" data-bs-toggle="modal" data-bs-target="#expenseModal">
-              <i class="fas fa-money-bill-alt"></i>
+              <i class="fa-solid fa-money-bill-1"></i>
               New Expense
             </a>
           </li>
