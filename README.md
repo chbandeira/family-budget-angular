@@ -1,6 +1,6 @@
 # FamilyBudgetAngular
 
-It is a Frontend project for Family Budget app in Angular.
+It is a Frontend project for Family Budget app in Angular, Bootstrap, and Chart.js.
 
 For a complete application, get this Backend project https://github.com/chbandeira/family-budget-node
 
