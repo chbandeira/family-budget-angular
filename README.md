@@ -6,6 +6,19 @@ For a complete application, get this Backend project https://github.com/chbandei
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
 
+## Screens
+
+![image](https://user-images.githubusercontent.com/23635145/126334139-8b18405b-417c-4a99-9286-395edd75607f.png)
+
+![image](https://user-images.githubusercontent.com/23635145/126334264-7f83df95-a15d-44b6-b68c-90f5ecad6fbf.png)
+
+![image](https://user-images.githubusercontent.com/23635145/126334395-bbdcebc1-5402-454a-b65c-c2fcd14d3ba4.png)
+
+![image](https://user-images.githubusercontent.com/23635145/126334456-22bc30a4-c436-4e9a-a259-be28ca35e600.png)
+
+![image](https://user-images.githubusercontent.com/23635145/126334523-9601375b-9346-4181-bca0-62f4cc1318cc.png)
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
