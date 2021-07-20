@@ -1,8 +1,8 @@
 # FamilyBudgetAngular
 
-It is a Frontend project for Family Budget app.
+It is a Frontend project for Family Budget app in Angular.
 
-Backend https://github.com/chbandeira/family-budget-node
+For a complete application, get this Backend project https://github.com/chbandeira/family-budget-node
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
 

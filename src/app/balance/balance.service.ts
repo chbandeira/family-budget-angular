@@ -1,4 +1,4 @@
-import { ExpenseService } from './../expense/expense.service';
+import { ExpenseService } from '../expense/expense.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { IncomeService } from '../income/income.service';
@@ -6,7 +6,7 @@ import { IncomeService } from '../income/income.service';
 @Injectable({
   providedIn: 'root'
 })
-export class MonthlyBalanceService {
+export class BalanceService {
   private value = 0.0;
   balanceBehavior: BehaviorSubject<any>;
 

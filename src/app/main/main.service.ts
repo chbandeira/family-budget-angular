@@ -1,7 +1,7 @@
 import { MainChartService } from './main-chart/main-chart.service';
 import { Injectable } from '@angular/core';
 import { ExpenseTableService } from '../expense/expense-table/expense-table.service';
-import { MonthlyBalanceService } from '../monthly-balance/monthly-balance.service';
+import { BalanceService } from '../balance/balance.service';
 import { IncomeTableService } from '../income/income-table/income-table.service';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { IncomeTableService } from '../income/income-table/income-table.service'
 export class MainService {
 
   constructor(
-    private monthlyBalanceService: MonthlyBalanceService,
+    private balanceService: BalanceService,
     private mainChartService: MainChartService,
     private expenseTableService: ExpenseTableService,
     private incomeTableService: IncomeTableService) { }
@@ -24,7 +24,7 @@ export class MainService {
    * @param date
    */
   update(date: Date) {
-    this.monthlyBalanceService.update(date);
+    this.balanceService.update(date);
     this.mainChartService.update(date);
     this.expenseTableService.update(date);
     this.incomeTableService.update(date);

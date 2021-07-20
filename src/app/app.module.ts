@@ -1,4 +1,4 @@
-import { MonthlyBalanceModule } from './monthly-balance/monthly-balance.module';
+import { BalanceModule } from './balance/balance.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,7 +17,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    MonthlyBalanceModule,
+    BalanceModule,
     SharedModule
   ],
   bootstrap: [AppComponent]

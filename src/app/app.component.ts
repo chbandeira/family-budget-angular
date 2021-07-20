@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MonthlyBalanceService } from './monthly-balance/monthly-balance.service';
+import { BalanceService } from './balance/balance.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,10 @@ import { MonthlyBalanceService } from './monthly-balance/monthly-balance.service
 export class AppComponent {
   title = 'Family Budget';
 
-  constructor(private monthlyBalanceService: MonthlyBalanceService) { }
+  constructor(private balanceService: BalanceService) { }
 
   ngOnInit(): void {
-    this.monthlyBalanceService.update(new Date());
+    this.balanceService.update(new Date());
   }
 
 }

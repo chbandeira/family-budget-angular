@@ -2,7 +2,7 @@ import { MainChartService } from './main-chart/main-chart.service';
 import { Component, OnInit } from '@angular/core';
 import { ExpenseTableService } from '../expense/expense-table/expense-table.service';
 import { IncomeTableService } from '../income/income-table/income-table.service';
-import { MonthlyBalanceService } from '../monthly-balance/monthly-balance.service';
+import { BalanceService } from '../balance/balance.service';
 import { MonthConst } from '../shared/month-const';
 
 @Component({
@@ -18,13 +18,13 @@ export class MainComponent implements OnInit {
 
   constructor(
     private mainChartService: MainChartService,
-    private monthlyBalanceService: MonthlyBalanceService,
+    private balanceService: BalanceService,
     private incomeTableService: IncomeTableService,
     private expenseTableService: ExpenseTableService) { }
 
   ngOnInit(): void {
     this.currentDate = new Date();
-    this.monthlyBalanceService.update(this.currentDate);
+    this.balanceService.update(this.currentDate);
     this.mainChartService.update(this.currentDate);
     this.mainChartService.barChartDataExpenseBehavior.subscribe(obj => {
       if (obj && obj.date) {
