@@ -1,3 +1,4 @@
+import { YearByYearModule } from './year-by-year/year-by-year.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -5,6 +6,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', loadChildren: () => import('./main/main.module').then(m => m.MainModule) },
+  { path: 'year-by-year', loadChildren: () => import('./year-by-year/year-by-year.module').then(m => m.YearByYearModule) },
   { path: 'detailed-month', loadChildren: () => import('./detailed-month/detailed-month.module').then(m => m.DetailedMonthModule) },
   { path: 'income', loadChildren: () => import('./income/income.module').then(m => m.IncomeModule) },
   { path: 'expense', loadChildren: () => import('./expense/expense.module').then(m => m.ExpenseModule) },

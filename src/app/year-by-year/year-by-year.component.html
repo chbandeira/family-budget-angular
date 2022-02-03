@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-body shadow rounded">
+    <div style="display: block; height: 450px;">
+      <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Year</th>
+          <th scope="col"><span class="text-danger">Total expenses</span></th>
+          <th scope="col"><span class="text-danger">Average expenses</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let year of years">
+          <th scope="row">{{ year.year }}</th>
+          <td class="text-danger">{{ year.total | currency }}</td>
+          <td class="text-danger">{{ year.average | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
