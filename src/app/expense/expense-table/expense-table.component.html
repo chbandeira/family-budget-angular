@@ -41,7 +41,11 @@
             {{ item.category }}
           </span>
           <span *ngIf="item.edit">
-            <input type="text" class="form-control p-0" [(ngModel)]="item.category" maxlength="50">
+            <!-- <input type="text" class="form-control p-0" [(ngModel)]="item.category" maxlength="50"> -->
+            <select id="expenseCategory" class="form-select p-0" [(ngModel)]="item.category">
+              <option selected>Choose...</option>
+              <option *ngFor="let item of categories">{{ item }}</option>
+            </select>
           </span>
         </td>
         <td class="col-2">

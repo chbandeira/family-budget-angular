@@ -1,3 +1,4 @@
+import { CategoryConst } from './../../shared/category-const';
 import { Expense } from './../expense-model';
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
@@ -13,11 +14,11 @@ import { MainService } from '../../main/main.service';
 export class ExpenseTableComponent implements OnInit {
 
   currentDate!: Date;
-
   expenses: any = [];
   totalExpenses = 0.0;
   item: any;
   tempItem = new Expense();
+  categories = CategoryConst.LIST;
 
   constructor(
     private expenseTableService: ExpenseTableService,
