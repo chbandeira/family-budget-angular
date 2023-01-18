@@ -38,19 +38,21 @@ export class DetailedMonthComponent implements OnInit {
     private incomeService: IncomeService,
     private expenseService: ExpenseService,
     private route: ActivatedRoute) {
-      this.currentDate = new Date();
+    this.currentDate = new Date();
     this.barChartOptions = {
       responsive: true,
       maintainAspectRatio: false,
-      scales: { xAxes: [{}], yAxes: [{
-        ticks: {
-          suggestedMin: 0,
-          suggestedMax: 20,
-          callback: function(value, index, values) {
-            return NumberFormatter.format(Number(value));
+      scales: {
+        xAxes: [{}], yAxes: [{
+          ticks: {
+            suggestedMin: 0,
+            suggestedMax: 20,
+            callback: function (value, index, values) {
+              return NumberFormatter.format(Number(value));
+            }
           }
-        }
-      }] },
+        }]
+      },
       plugins: {
         datalabels: {
           anchor: 'end',
@@ -67,7 +69,7 @@ export class DetailedMonthComponent implements OnInit {
       },
       tooltips: {
         callbacks: {
-          label: function(tooltipItem: any, data: any) {
+          label: function (tooltipItem: any, data: any) {
             const label = data.datasets[tooltipItem.datasetIndex].label;
             const dataValue = NumberFormatter.format(Number(data.datasets[tooltipItem.datasetIndex].data[0]));
             return ` ${label} ${dataValue}`;
@@ -86,7 +88,7 @@ export class DetailedMonthComponent implements OnInit {
     this.barChartData = [];
     for (let i = 0; i < CategoryConst.GROUP.length; i++) {
       const category = CategoryConst.GROUP[i];
-      this.barChartData.push({data: [0], label: category});
+      this.barChartData.push({ data: [0], label: category });
     }
   }
 
@@ -109,27 +111,27 @@ export class DetailedMonthComponent implements OnInit {
       expenses.data.forEach((values: any) => totalExpense += values.value);
 
       // Basics
-      const basics = [CategoryConst.LIST[0], CategoryConst.LIST[1], CategoryConst.LIST[9]];
+      const basics = [CategoryConst.LIST[0], CategoryConst.LIST[1], CategoryConst.LIST[11]];
       this.setValueBarChartDataItem(0, basics, totalExpense, isAverage, expenses.data);
 
       // Entertainment
-      const entertainment = [CategoryConst.LIST[2]];
+      const entertainment = [CategoryConst.LIST[3]];
       this.setValueBarChartDataItem(1, entertainment, totalExpense, isAverage, expenses.data);
 
       // Grocery
-      const grocery = [CategoryConst.LIST[3]];
+      const grocery = [CategoryConst.LIST[4]];
       this.setValueBarChartDataItem(2, grocery, totalExpense, isAverage, expenses.data);
 
       // Home
-      const home = [CategoryConst.LIST[4], CategoryConst.LIST[5], CategoryConst.LIST[7], CategoryConst.LIST[10], CategoryConst.LIST[11]];
+      const home = [CategoryConst.LIST[2], CategoryConst.LIST[5], CategoryConst.LIST[6], CategoryConst.LIST[8], CategoryConst.LIST[10], CategoryConst.LIST[12], CategoryConst.LIST[13]];
       this.setValueBarChartDataItem(3, home, totalExpense, isAverage, expenses.data);
 
       // Investments
-      const investments = [CategoryConst.LIST[6]];
+      const investments = [CategoryConst.LIST[7]];
       this.setValueBarChartDataItem(4, investments, totalExpense, isAverage, expenses.data);
 
       // Miscellaneous
-      const miscellaneous = [CategoryConst.LIST[8]];
+      const miscellaneous = [CategoryConst.LIST[9]];
       this.setValueBarChartDataItem(5, miscellaneous, totalExpense, isAverage, expenses.data);
 
       // TOTAL
@@ -158,7 +160,7 @@ export class DetailedMonthComponent implements OnInit {
    */
   setValueBarChartDataItem(index: number, categoryFilters: string[], totalExpenses: number, isAverage: boolean, expenses: Expense[]) {
     expenses = expenses.filter((e: Expense) => categoryFilters.includes(e.category));
-    this.categories[index] = {group: CategoryConst.GROUP[index], categories: []};
+    this.categories[index] = { group: CategoryConst.GROUP[index], categories: [] };
     this.categories[index]['categories'].push(categoryFilters.join(', '));
 
     let sum = 0;

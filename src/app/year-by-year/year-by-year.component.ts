@@ -22,6 +22,8 @@ export class YearByYearComponent implements OnInit {
   barChartData: ChartDataSets[];
 
   years: any[] = [];
+  // the year to start the chart
+  startYear = 2019;
 
   constructor(private expenseService: ExpenseService) {
     this.barChartOptions = {
@@ -69,7 +71,7 @@ export class YearByYearComponent implements OnInit {
 
   ngOnInit(): void {
     let yearsFetch = [];
-    for (let year = 2019; year <= new Date().getFullYear(); year++) {
+    for (let year = this.startYear; year <= new Date().getFullYear(); year++) {
       yearsFetch.push({ year: year, observable: this.expenseService.fetchSum(year) });
     }
     let yearIndex = 0;

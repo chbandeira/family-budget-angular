@@ -20,9 +20,12 @@ export class IncomeComponent implements OnInit {
   income = new Income();
   incomeForm!: FormGroup;
 
+  // TODO this can be moved to DB
   categories = [
-    'Charlles Salary',
-    'Suellen Salary'
+    'Person 1 Salary',
+    'Person 2 Salary',
+    'Person 1 Extra',
+    'Person 2 Extra'
   ];
 
   constructor(

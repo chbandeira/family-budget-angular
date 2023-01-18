@@ -2,6 +2,7 @@ export const CategoryConst: any = {
   LIST: [
     'Cell phone',
     'Commute',
+    'Condo',
     'Entertainment',
     'Groceries/Market',
     'Home Insurance',
@@ -9,6 +10,7 @@ export const CategoryConst: any = {
     'Investments',
     'Laundry',
     'Miscellaneous',
+    'Mortgage',
     'Personal care',
     'Rent',
     'Utilities'
