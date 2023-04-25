@@ -6,6 +6,10 @@ For a complete application, get this Backend project https://github.com/chbandei
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.6.
 
+## Requirements
+
+Node.js v16
+
 ## Screens
 
 ![image](https://user-images.githubusercontent.com/23635145/126334139-8b18405b-417c-4a99-9286-395edd75607f.png)
@@ -30,6 +34,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+### Build for production
+
+`ng build --configuration production --base-href="http://10.0.0.8/"` change IP with your domain or local IP.
 
 ## Running unit tests
 
