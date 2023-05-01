@@ -52,7 +52,7 @@ export class YearByYearComponent implements OnInit {
       },
       title: {
         display: true,
-        text: 'EXPENSES YEAR BY YEAR'
+        text: 'EXPENSES YEAR OVER YEAR'
       },
       tooltips: {
         callbacks: {

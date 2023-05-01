@@ -13,7 +13,9 @@ export const CategoryConst: any = {
     'Mortgage',
     'Personal care',
     'Rent',
-    'Utilities'
+    'Utilities',
+    'Auto Finance',
+    'Auto Insurance'
   ],
   GROUP: [
     'Basics',
@@ -21,6 +23,7 @@ export const CategoryConst: any = {
     'Grocery',
     'Home',
     'Investments',
-    'Miscellaneous'
+    'Miscellaneous',
+    'Auto'
   ]
 }

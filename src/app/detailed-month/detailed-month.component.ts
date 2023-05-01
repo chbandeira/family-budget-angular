@@ -134,6 +134,10 @@ export class DetailedMonthComponent implements OnInit {
       const miscellaneous = [CategoryConst.LIST[9]];
       this.setValueBarChartDataItem(5, miscellaneous, totalExpense, isAverage, expenses.data);
 
+      // Auto
+      const auto = [CategoryConst.LIST[14], CategoryConst.LIST[15]];
+      this.setValueBarChartDataItem(6, auto, totalExpense, isAverage, expenses.data);
+
       // TOTAL
       combineLatest([
         this.incomeService.fetchSum(date.getFullYear(), month),
