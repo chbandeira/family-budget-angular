@@ -15,6 +15,8 @@ export class MainComponent implements OnInit {
   currentDate!: Date;
   months = MonthConst.MONTHS;
   monthlyBalance = 0.0;
+  years: number[] = [];
+  yearText?: string;
 
   constructor(
     private mainChartService: MainChartService,
@@ -23,7 +25,17 @@ export class MainComponent implements OnInit {
     private expenseTableService: ExpenseTableService) { }
 
   ngOnInit(): void {
+    for (let i = 2020; i <= new Date().getFullYear(); i++) {
+      this.years.push(i);
+    }
     this.currentDate = new Date();
+    this.updateChart();
+  }
+
+  private updateChart() {
+    this.yearText = this.currentDate.getFullYear().toString();
+    this.incomeTableService.update(this.currentDate);
+    this.expenseTableService.update(this.currentDate);
     this.balanceService.update(this.currentDate);
     this.mainChartService.update(this.currentDate);
     this.mainChartService.barChartDataExpenseBehavior.subscribe(obj => {
@@ -46,9 +58,9 @@ export class MainComponent implements OnInit {
     const previousDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
     if (this.currentDate.getMonth() === 0) {
       previousDate.setMonth(11);
-      previousDate.setFullYear(this.currentDate.getFullYear() -1);
+      previousDate.setFullYear(this.currentDate.getFullYear() - 1);
     } else {
-      previousDate.setMonth(this.currentDate.getMonth() -1);
+      previousDate.setMonth(this.currentDate.getMonth() - 1);
     }
     this.currentDate = previousDate;
     this.incomeTableService.update(this.currentDate);
@@ -63,12 +75,17 @@ export class MainComponent implements OnInit {
     const nextDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
     if (this.currentDate.getMonth() === 11) {
       nextDate.setMonth(0);
-      nextDate.setFullYear(this.currentDate.getFullYear() +1);
+      nextDate.setFullYear(this.currentDate.getFullYear() + 1);
     } else {
-      nextDate.setMonth(this.currentDate.getMonth() +1);
+      nextDate.setMonth(this.currentDate.getMonth() + 1);
     }
     this.currentDate = nextDate;
     this.incomeTableService.update(this.currentDate);
     this.expenseTableService.update(this.currentDate);
+  }
+
+  changeYear(year: number) {
+    this.currentDate = new Date(year, 0);
+    this.updateChart();
   }
 }

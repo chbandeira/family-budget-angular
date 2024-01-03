@@ -18,6 +18,8 @@ import { Expense } from '../expense/expense-model';
 })
 export class DetailedMonthComponent implements OnInit {
   currentDate!: Date;
+  years: number[] = [];
+  yearText?: string;
 
   barChartOptions: ChartOptions;
   barChartLabels: Label[];
@@ -93,7 +95,11 @@ export class DetailedMonthComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    for (let i = 2020; i <= new Date().getFullYear(); i++) {
+      this.years.push(i);
+    }
     this.month = Number(this.route.snapshot.queryParams.month) - 1;
+    this.currentDate = this.route.snapshot.queryParams.currentDate ?? new Date();
     this.selectMonth(this.month);
   }
 
@@ -104,7 +110,8 @@ export class DetailedMonthComponent implements OnInit {
   selectMonth(month: number) {
     let isAverage = month < 0;
     this.month = month;
-    const date = new Date();
+    const date = this.currentDate ?? new Date();
+    this.yearText = date.getFullYear().toString();
     this.expenseService.fetch(date.getFullYear(), month).subscribe(expenses => {
       // total expenses
       let totalExpense = 0.0;
@@ -178,6 +185,11 @@ export class DetailedMonthComponent implements OnInit {
 
     this.barChartData[index].data = [sum];
     this.barChartData[index].label = `${CategoryConst.GROUP[index]} ${percent.toPrecision(2)}%`;
+  }
+
+  changeYear(year: number) {
+    this.currentDate = new Date(year, 0);
+    this.selectMonth(this.month);
   }
 
 }

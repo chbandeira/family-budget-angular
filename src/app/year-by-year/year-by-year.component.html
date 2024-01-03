@@ -1,13 +1,24 @@
 <div class="card">
   <div class="card-body shadow rounded">
-    <div style="display: block; height: 450px;">
+    <div style="display: block; height: 300px;">
       <canvas baseChart
-        [datasets]="barChartData"
-        [labels]="barChartLabels"
-        [options]="barChartOptions"
-        [plugins]="barChartPlugins"
-        [legend]="barChartLegend"
-        [chartType]="barChartType">
+        [datasets]="expenseYearByYearChart.barChartData"
+        [labels]="expenseYearByYearChart.barChartLabels"
+        [options]="expenseYearByYearChart.barChartOptions"
+        [plugins]="expenseYearByYearChart.barChartPlugins"
+        [legend]="expenseYearByYearChart.barChartLegend"
+        [chartType]="expenseYearByYearChart.barChartType">
+      </canvas>
+    </div>
+
+    <div style="display: block; height: 300px;">
+      <canvas baseChart
+        [datasets]="incomeYearByYearChart.barChartData"
+        [labels]="incomeYearByYearChart.barChartLabels"
+        [options]="incomeYearByYearChart.barChartOptions"
+        [plugins]="incomeYearByYearChart.barChartPlugins"
+        [legend]="incomeYearByYearChart.barChartLegend"
+        [chartType]="incomeYearByYearChart.barChartType">
       </canvas>
     </div>
 
@@ -15,15 +26,25 @@
       <thead>
         <tr>
           <th scope="col">Year</th>
+          <th scope="col"><span class="text-primary">Total income</span></th>
           <th scope="col"><span class="text-danger">Total expenses</span></th>
-          <th scope="col"><span class="text-danger">Average expenses</span></th>
+          <th scope="col"><span class="text-success">Total difference</span></th>
+          <th scope="col" colspan="2"><span class="text-primary">Average income</span></th>
+          <th scope="col" colspan="2"><span class="text-danger">Average expenses</span></th>
+          <th scope="col"><span class="text-success">Average difference</span></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let year of years">
+        <tr *ngFor="let year of years; index as i">
           <th scope="row">{{ year.year }}</th>
+          <td class="text-primary">{{ year.totalIncome | currency }}</td>
           <td class="text-danger">{{ year.total | currency }}</td>
+          <td class="text-success">{{ year.totalIncome - year.total | currency }}</td>
+          <td class="text-primary">{{ year.averageIncome | currency }}</td>
+          <td class="text-primary">{{ i === 0 ? '0%' : getPercent(year.averageIncome, years[i-1]?.averageIncome) | percent }}</td>
           <td class="text-danger">{{ year.average | currency }}</td>
+          <td class="text-danger">{{ i === 0 ? '0%' : getPercent(year.average, years[i-1]?.average) | percent }}</td>
+          <td class="text-success">{{ year.averageIncome - year.average | currency }}</td>
         </tr>
       </tbody>
     </table>

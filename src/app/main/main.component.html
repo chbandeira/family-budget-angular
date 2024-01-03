@@ -1,16 +1,27 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-  <h1 class="h2">Annual Chart</h1>
+  <h1 class="h2">Chart {{yearText}}</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="dropdown">
       <button class="btn btn-outline-success dropdown-toggle" type="button" id="detailsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="far fa-calendar-alt"></i>
-        Details
+        <i class="fa-solid fa-calendar-days"></i>
+        Year
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="detailsDropdown">
+        <li *ngFor="let year of years">
+          <a class="dropdown-item" (click)="changeYear(year)">{{ year }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="dropdown ms-2">
+      <button class="btn btn-outline-success dropdown-toggle" type="button" id="detailsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-calendar-day"></i>
+        Monthly/Annual details
       </button>
       <ul class="dropdown-menu" aria-labelledby="detailsDropdown">
         <li *ngFor="let month of months; index as i">
-          <a class="dropdown-item" [routerLink]="['/detailed-month']" [queryParams]="{month: i+1}">{{ month }}</a>
+          <a class="dropdown-item" [routerLink]="['/detailed-month']" [queryParams]="{month: i+1, year: currentDate}">{{ month }}</a>
         </li>
-        <a class="dropdown-item" [routerLink]="['/detailed-month']" [queryParams]="{month: -1}">ANNUAL</a>
+        <a class="dropdown-item" [routerLink]="['/detailed-month']" [queryParams]="{month: -1, year: currentDate}">ANNUAL</a>
       </ul>
     </div>
   </div>

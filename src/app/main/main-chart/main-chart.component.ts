@@ -13,8 +13,6 @@ import { NumberFormatter } from '../../shared/number-formarter';
 })
 export class MainChartComponent implements OnInit {
 
-  currentDate!: Date;
-
   barChartOptions: ChartOptions;
   barChartLabels: Label[];
   barChartType: ChartType;
@@ -23,19 +21,20 @@ export class MainChartComponent implements OnInit {
   barChartData: ChartDataSets[];
 
   constructor(private mainChartService: MainChartService) {
-    this.currentDate = new Date();
     this.barChartOptions = {
       responsive: true,
       maintainAspectRatio: false,
-      scales: { xAxes: [{}], yAxes: [{
-        ticks: {
-          suggestedMin: 50,
-          suggestedMax: 100,
-          callback: function(value, index, values) {
-            return NumberFormatter.format(Number(value));
+      scales: {
+        xAxes: [{}], yAxes: [{
+          ticks: {
+            suggestedMin: 50,
+            suggestedMax: 100,
+            callback: function (value, index, values) {
+              return NumberFormatter.format(Number(value));
+            }
           }
-        }
-      }] },
+        }]
+      },
       plugins: {
         datalabels: {
           anchor: 'end',
@@ -47,12 +46,11 @@ export class MainChartComponent implements OnInit {
         }
       },
       title: {
-        display: true,
-        text: this.currentDate.getFullYear().toString()
+        display: true
       },
       tooltips: {
         callbacks: {
-          label: function(tooltipItem, data) {
+          label: function (tooltipItem, data) {
             return NumberFormatter.format(Number(tooltipItem.value));
           }
         },
@@ -71,7 +69,6 @@ export class MainChartComponent implements OnInit {
   ngOnInit(): void {
     this.mainChartService.barChartDataExpenseBehavior.subscribe(obj => {
       if (obj && obj.values) {
-        this.currentDate = obj.date;
         let avg = 0;
         obj.values.forEach((e: number) => avg += e);
         avg = avg / obj.values.length;
@@ -80,7 +77,6 @@ export class MainChartComponent implements OnInit {
     });
     this.mainChartService.barChartDataIncomeBehavior.subscribe(obj => {
       if (obj && obj.values) {
-        this.currentDate = obj.date;
         let avg = 0;
         obj.values.forEach((e: number) => avg += e);
         avg = avg / obj.values.length;
