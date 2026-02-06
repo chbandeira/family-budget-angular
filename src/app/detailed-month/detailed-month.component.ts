@@ -108,7 +108,7 @@ export class DetailedMonthComponent implements OnInit {
    * @param month January = 0 to December = 11
    */
   selectMonth(month: number) {
-    let isAverage = month < 0;
+    let isAverage = false;
     this.month = month;
     const date = this.currentDate ?? new Date();
     this.yearText = date.getFullYear().toString();
@@ -166,7 +166,7 @@ export class DetailedMonthComponent implements OnInit {
    * @param index Index of the category group
    * @param categoryFilters Categories to filter expenses
    * @param totalExpenses Total of expenses
-   * @param isAverage true if want to get the average; othewise false
+   * @param isAverage true if want to get annual average; othewise false
    * @param expenses Array of expenses
    */
   setValueBarChartDataItem(index: number, categoryFilters: string[], totalExpenses: number, isAverage: boolean, expenses: Expense[]) {
@@ -177,7 +177,7 @@ export class DetailedMonthComponent implements OnInit {
     let sum = 0;
     expenses.forEach((e: Expense) => sum += e.value);
     if (isAverage) {
-      const totalMonths = new Date().getMonth() + 1;
+      const totalMonths = 12;
       sum = sum / totalMonths;
       totalExpenses = totalExpenses / totalMonths
     }
