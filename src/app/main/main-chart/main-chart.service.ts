@@ -2,6 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ExpenseService } from '../../expense/expense.service';
 import { IncomeService } from '../../income/income.service';
+import { transformMonthlyData } from '../../shared/helper/transform-data';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +22,12 @@ export class MainChartService {
 
   update(date: Date) {
     this.expenseService.fetchSum(date.getFullYear()).subscribe((docs) => {
-      // sort by month
-      docs.data.sort((a: any, b: any) => a._id - b._id);
-      const values = docs.data.map((doc: any) => parseInt(doc.total));
+      const values = transformMonthlyData(docs.data);
       this.barChartDataExpenseBehavior.next({values: values, date: date});
     });
     this.incomeService.fetchSum(date.getFullYear()).subscribe((docs) => {
-      // sort by month
-      docs.data.sort((a: any, b: any) => a._id - b._id);
-      const values = docs.data.map((doc: any) => parseInt(doc.total));
+      console.log(docs.data);
+      const values = transformMonthlyData(docs.data);
       this.barChartDataIncomeBehavior.next({values: values, date: date});
     });
   }

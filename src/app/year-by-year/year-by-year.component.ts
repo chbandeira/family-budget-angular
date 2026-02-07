@@ -8,6 +8,7 @@ import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Component, OnInit } from '@angular/core';
 import { IncomeService } from '../income/income.service';
 import { YearByYearChart } from './year-by-year-chart.model';
+import { transformMonthlyData } from '../shared/helper/transform-data';
 
 @Component({
   selector: 'app-year-by-year',
@@ -144,8 +145,7 @@ export class YearByYearComponent implements OnInit {
   }
 
   private setDataExpenses(docs: any, index: number, year: number) {
-    docs.data.sort((a: any, b: any) => a._id - b._id);
-    const values = docs.data.map((doc: any) => parseInt(doc.total));
+    const values = transformMonthlyData(docs.data);
     const total = values.reduce((sum: number, current: number) => sum + current, 0);
     if (values) {
       let avg = 0;
@@ -161,9 +161,7 @@ export class YearByYearComponent implements OnInit {
   }
 
   private setDataIncome(docs: any, index: number, year: number) {
-
-    docs.data.sort((a: any, b: any) => a._id - b._id);
-    const values = docs.data.map((doc: any) => parseInt(doc.total));
+    const values = transformMonthlyData(docs.data);
     const total = values.reduce((sum: number, current: number) => sum + current, 0);
     if (values) {
       let avg = 0;
