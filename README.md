@@ -37,7 +37,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ### Build for production
 
-`ng build --configuration production --base-href="http://10.0.0.8/"` change IP with your domain or local IP.
+`cmd /c npm run build -- --configuration production --base-href="http://10.0.0.101/"` change IP with your domain or local IP.
 
 ## Running unit tests
 
