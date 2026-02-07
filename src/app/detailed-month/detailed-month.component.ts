@@ -108,7 +108,7 @@ export class DetailedMonthComponent implements OnInit {
    * @param month January = 0 to December = 11
    */
   selectMonth(month: number) {
-    let isAverage = false;
+    let isAverage = month < 0;
     this.month = month;
     const date = this.currentDate ?? new Date();
     this.yearText = date.getFullYear().toString();
@@ -177,7 +177,8 @@ export class DetailedMonthComponent implements OnInit {
     let sum = 0;
     expenses.forEach((e: Expense) => sum += e.value);
     if (isAverage) {
-      const totalMonths = 12;
+      const isCurrentYear = this.currentDate.getFullYear() === new Date().getFullYear();
+      const totalMonths = isCurrentYear ? (this.currentDate.getMonth() === 0 ? 1 : this.currentDate.getMonth()) : 12;
       sum = sum / totalMonths;
       totalExpenses = totalExpenses / totalMonths
     }
