@@ -9,6 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Requirements
 
 Node.js v16
+Angular CLI 11
 
 ## Screens
 

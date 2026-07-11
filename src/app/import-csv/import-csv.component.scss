@@ -1,0 +1,52 @@
+.upload-area {
+  cursor: pointer;
+  padding: 2rem;
+  border: 2px dashed #dee2e6;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #198754;
+    background-color: rgba(25, 135, 84, 0.03);
+  }
+}
+
+.upload-icon {
+  font-size: 4rem;
+  opacity: 0.6;
+}
+
+/* Row highlights */
+.row-income {
+  border-left: 3px solid rgb(93, 180, 238);
+}
+
+.row-expense {
+  border-left: 3px solid rgb(254, 129, 156);
+}
+
+/* Category select warning border */
+.border-warning {
+  border-color: #ffc107 !important;
+}
+
+/* Strikethrough for deselected rows */
+.table-active td {
+  opacity: 0.5;
+}
+
+/* Badge icons spacing */
+.badge i {
+  margin-right: 4px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .upload-area {
+    padding: 1rem;
+  }
+
+  .upload-icon {
+    font-size: 2.5rem;
+  }
+}

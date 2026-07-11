@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'detailed-month', loadChildren: () => import('./detailed-month/detailed-month.module').then(m => m.DetailedMonthModule) },
   { path: 'income', loadChildren: () => import('./income/income.module').then(m => m.IncomeModule) },
   { path: 'expense', loadChildren: () => import('./expense/expense.module').then(m => m.ExpenseModule) },
+  { path: 'import-csv', loadChildren: () => import('./import-csv/import-csv.module').then(m => m.ImportCsvModule) },
   { path: '**', component: PageNotFoundComponent }
 ];
 
